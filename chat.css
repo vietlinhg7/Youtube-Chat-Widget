@@ -1,0 +1,363 @@
+/* =================================================================
+    YOUTUBE LIVE CHAT - MODERN REDESIGN
+    Contemporary glass morphism design with smooth animations
+    ================================================================= */
+
+/* Import Modern Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* =================================================================
+    DESIGN SYSTEM
+    ================================================================= */
+:root {
+  /* Glass Morphism Colors */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-bg-strong: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: rgba(0, 0, 0, 0.1);
+
+  /* User Type Colors */
+  --default-accent: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --moderator-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --member-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --owner-accent: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-accent: rgba(255, 255, 255, 0.9);
+
+  /* Spacing */
+  --message-gap: 12px;
+  --border-radius: 16px;
+  --border-radius-sm: 8px;
+}
+
+/* =================================================================
+    BASE STYLES
+    ================================================================= */
+body {
+  overflow: hidden;
+  background: transparent;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+yt-live-chat-renderer {
+  background: transparent !important;
+}
+
+yt-live-chat-renderer * {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* =================================================================
+    MODERN ANIMATIONS
+    ================================================================= */
+@keyframes slideInMessage {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) scale(0.8);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes avatarBounce {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(-2deg);
+  }
+  75% {
+    transform: scale(1.05) rotate(1deg);
+  }
+}
+
+/* =================================================================
+    HIDE UNWANTED ELEMENTS
+    ================================================================= */
+ytd-sponsorships-live-chat-gift-redemption-announcement-renderer,
+yt-live-chat-mode-change-message-renderer,
+yt-live-chat-viewer-engagement-message-renderer,
+yt-live-chat-restricted-participation-renderer,
+yt-live-chat-poll-renderer,
+yt-live-chat-banner-manager,
+yt-live-chat-banner-header-renderer,
+yt-live-chat-banner-renderer,
+yt-live-chat-header-renderer,
+yt-live-chat-message-input-renderer,
+yt-live-chat-ticker-renderer,
+yt-live-chat-text-message-renderer #author-badges,
+yt-live-chat-author-chip.yt-live-chat-membership-item-renderer #chat-badges,
+yt-live-chat-author-badge-renderer[type="member"],
+yt-live-chat-author-badge-renderer[type="moderator"],
+yt-live-chat-text-message-renderer #author-photo,
+yt-live-chat-text-message-renderer[is-highlighted] #author-photo,
+#reaction-control-panel {
+  display: none !important;
+}
+
+/* =================================================================
+    CONTAINER SETUP
+    ================================================================= */
+yt-live-chat-item-list-renderer #items,
+yt-live-chat-item-list-renderer #item-scroller {
+  overflow: hidden !important;
+}
+
+yt-live-chat-renderer yt-live-chat-text-message-renderer #content,
+yt-live-chat-renderer
+  yt-live-chat-text-message-renderer[is-highlighted]
+  #content,
+yt-live-chat-renderer yt-live-chat-paid-message-renderer #content,
+yt-live-chat-renderer yt-live-chat-legacy-paid-message-renderer #content {
+  overflow: visible !important;
+}
+
+/* =================================================================
+    MODERN MESSAGE DESIGN
+    ================================================================= */
+yt-live-chat-text-message-renderer,
+yt-live-chat-text-message-renderer[is-highlighted] {
+  margin: 0 0 var(--message-gap) 0;
+  padding-left: 24px;
+  display: flex;
+  align-items: flex-start;
+  animation: slideInMessage 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+/* Message Container - Vertical Layout */
+yt-live-chat-text-message-renderer #content,
+yt-live-chat-text-message-renderer[is-highlighted] #content {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  animation-delay: 0.1s;
+}
+
+/* Author Name Badge - Vertical Layout */
+yt-live-chat-text-message-renderer #content #author-name,
+yt-live-chat-text-message-renderer[is-highlighted] #content #author-name {
+  display: block;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  background: var(--default-accent);
+  padding: 8px 16px !important;
+  border-radius: 12px 12px 0 0 !important;
+  margin-bottom: 0 !important; /* Already set, ensures no gap */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-bottom: none !important; /* Already set, ensures seamless connection */
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  order: 1;
+  width: fit-content;
+  align-self: flex-start;
+}
+
+/* Member name styling */
+yt-live-chat-text-message-renderer[author-type="member"] #content #author-name,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
+  #content
+  #author-name {
+  background: var(--member-accent) !important;
+}
+
+/* Moderator name styling */
+yt-live-chat-text-message-renderer[author-type="moderator"]
+  #content
+  #author-name,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
+  #content
+  #author-name {
+  background: var(--moderator-accent) !important;
+}
+
+/* Owner name styling */
+yt-live-chat-text-message-renderer[author-type="owner"] #content #author-name,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
+  #content
+  #author-name {
+  background: var(--owner-accent) !important;
+  color: #2d3748 !important;
+}
+
+/* Modern Message Bubble - Connected to Name */
+yt-live-chat-text-message-renderer #content #message,
+yt-live-chat-text-message-renderer[is-highlighted] #content #message {
+  background: #640812 !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid #c3996c !important;
+  color: var(--text-primary) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  padding: 16px 20px !important;
+  margin: 0 !important; /* Already set, ensures no gap */
+  position: relative;
+  top: -16px; /* Pulls the message box up to overlap the border of the author name */
+  word-wrap: break-word;
+  animation: pulseGlow 2s ease-in-out infinite;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  order: 2;
+  z-index: -10 !important;
+  width: 100%;
+  max-width: 700px;
+}
+
+/* Enhanced message bubble on hover */
+yt-live-chat-text-message-renderer #content #message:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Member message variant */
+yt-live-chat-text-message-renderer[author-type="member"] #content #message,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
+  #content
+  #message {
+  background: var(--member-accent) !important;
+}
+
+/* Moderator message variant */
+yt-live-chat-text-message-renderer[author-type="moderator"] #content #message,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
+  #content
+  #message {
+  background: var(--moderator-accent) !important;
+}
+
+/* Owner message variant */
+yt-live-chat-text-message-renderer[author-type="owner"] #content #message,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
+  #content
+  #message {
+  background: var(--owner-accent) !important;
+  color: #2d3748 !important;
+  box-shadow: 0 8px 32px rgba(255, 236, 210, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* =================================================================
+    MICRO-INTERACTIONS
+    ================================================================= */
+/* Message entrance stagger effect */
+yt-live-chat-text-message-renderer:nth-child(1) {
+  animation-delay: 0s;
+}
+yt-live-chat-text-message-renderer:nth-child(2) {
+  animation-delay: 0.1s;
+}
+yt-live-chat-text-message-renderer:nth-child(3) {
+  animation-delay: 0.2s;
+}
+yt-live-chat-text-message-renderer:nth-child(4) {
+  animation-delay: 0.3s;
+}
+yt-live-chat-text-message-renderer:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+/* =================================================================
+    TIMESTAMP & UTILITIES
+    ================================================================= */
+yt-live-chat-text-message-renderer #timestamp {
+  color: var(--text-secondary) !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  opacity: 0.6 !important;
+  font-family: "JetBrains Mono", monospace !important;
+}
+
+/* Link styling */
+yt-live-chat-text-message-renderer a,
+yt-live-chat-legacy-paid-message-renderer a {
+  color: #4facfe !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease;
+}
+
+yt-live-chat-text-message-renderer a:hover {
+  color: #00f2fe !important;
+  text-shadow: 0 0 8px rgba(79, 172, 254, 0.3);
+}
+
+/* Hide deleted messages */
+yt-live-chat-text-message-renderer[is-deleted],
+yt-live-chat-legacy-paid-message-renderer[is-deleted] {
+  display: none !important;
+}
+
+/* =================================================================
+    RESPONSIVE DESIGN
+    ================================================================= */
+@media (max-width: 480px) {
+  yt-live-chat-text-message-renderer #content #message {
+    font-size: 14px !important;
+    padding: 12px 16px !important;
+  }
+
+  yt-live-chat-text-message-renderer #author-photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 24px;
+    transform: scale(2, 2);
+    z-index: -50 !important;
+    position: relative;
+    top: 45px;
+    display: block;
+    border: 1px solid #181b2d;
+    margin-right: 8px;
+  }
+
+  yt-live-chat-text-message-renderer #content #author-name {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+  }
+}
+
+/* =================================================================
+    ACCESSIBILITY ENHANCEMENTS
+    ================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
