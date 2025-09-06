@@ -4,11 +4,15 @@
     ================================================================= */
 
 /* Import Modern Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cal+Sans:ital,wght@0,400..900;1,400..900&display=swap");
 
 /* =================================================================
     DESIGN SYSTEM
     ================================================================= */
+html {
+  width: 100vw;
+  height: 100vh;
+}
 :root {
   /* Glass Morphism Colors */
   --glass-bg: rgba(255, 255, 255, 0.1);
@@ -17,10 +21,11 @@
   --glass-shadow: rgba(0, 0, 0, 0.1);
 
   /* User Type Colors */
-  --default-accent: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --moderator-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --member-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --owner-accent: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  /* linear-gradient(135deg, #667eea 0%, #764ba2 100%) */
+  --default-accent: #171717;
+  --moderator-accent: #171717;
+  --member-accent: #22205f;
+  --owner-accent: #640812;
 
   /* Text Colors */
   --text-primary: #ffffff;
@@ -39,15 +44,15 @@
 body {
   overflow: hidden;
   background: transparent;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  transform: scale(calc(100vw / 1920));
+  transform-origin: top left;
+  width: 800; /* base design size */
+  height: 600px;
+  overflow: hidden;
 }
 
 yt-live-chat-renderer {
   background: transparent !important;
-}
-
-yt-live-chat-renderer * {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* =================================================================
@@ -101,9 +106,16 @@ yt-live-chat-renderer * {
 }
 
 /* =================================================================
-    HIDE UNWANTED ELEMENTS
-    ================================================================= */
+   HIDE ALL UNNECESSARY ELEMENTS
+   Keep only author-name + message
+   ================================================================= */
+
+/* Membership gifts, announcements, polls, banners */
 ytd-sponsorships-live-chat-gift-redemption-announcement-renderer,
+yt-live-chat-membership-item-renderer,
+yt-live-chat-paid-message-renderer,
+yt-live-chat-legacy-paid-message-renderer,
+yt-live-chat-paid-sticker-renderer,
 yt-live-chat-mode-change-message-renderer,
 yt-live-chat-viewer-engagement-message-renderer,
 yt-live-chat-restricted-participation-renderer,
@@ -112,15 +124,34 @@ yt-live-chat-banner-manager,
 yt-live-chat-banner-header-renderer,
 yt-live-chat-banner-renderer,
 yt-live-chat-header-renderer,
-yt-live-chat-message-input-renderer,
 yt-live-chat-ticker-renderer,
+yt-live-chat-message-input-renderer,
+#reaction-control-panel {
+  display: none !important;
+}
+yt-button-view-model,
+#before-content-buttons.yt-live-chat-text-message-renderer {
+  display: none !important;
+}
+
+/* Author badges (member, moderator, owner…) */
 yt-live-chat-text-message-renderer #author-badges,
 yt-live-chat-author-chip.yt-live-chat-membership-item-renderer #chat-badges,
 yt-live-chat-author-badge-renderer[type="member"],
 yt-live-chat-author-badge-renderer[type="moderator"],
+yt-live-chat-author-badge-renderer[type="owner"] {
+  display: none !important;
+}
+
+/* Author photos / avatars */
 yt-live-chat-text-message-renderer #author-photo,
-yt-live-chat-text-message-renderer[is-highlighted] #author-photo,
-#reaction-control-panel {
+yt-live-chat-text-message-renderer[is-highlighted] #author-photo {
+  display: none !important;
+}
+
+/* Deleted messages */
+yt-live-chat-text-message-renderer[is-deleted],
+yt-live-chat-legacy-paid-message-renderer[is-deleted] {
   display: none !important;
 }
 
@@ -165,27 +196,26 @@ yt-live-chat-text-message-renderer[is-highlighted] #content {
   animation-delay: 0.1s;
 }
 
-/* Author Name Badge - Vertical Layout */
 yt-live-chat-text-message-renderer #content #author-name,
 yt-live-chat-text-message-renderer[is-highlighted] #content #author-name {
+  font-family: "Playfair Display", serif !important;
   display: block;
-  font-size: 13px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
   color: var(--text-primary) !important;
   background: var(--default-accent);
   padding: 8px 16px !important;
-  border-radius: 12px 12px 0 0 !important;
-  margin-bottom: 0 !important; /* Already set, ensures no gap */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  border-bottom: none !important; /* Already set, ensures seamless connection */
+  border-radius: 20px;
+  border: 1px solid #c3996c;
   position: relative;
   z-index: 5;
   text-align: center;
-  order: 1;
+  order: 3;
+
   width: fit-content;
-  align-self: flex-start;
+  margin-left: auto; /* 🆕 */
+  margin-right: auto; /* 🆕 */
+  margin-bottom: -30px;
 }
 
 /* Member name styling */
@@ -218,14 +248,18 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
 /* Modern Message Bubble - Connected to Name */
 yt-live-chat-text-message-renderer #content #message,
 yt-live-chat-text-message-renderer[is-highlighted] #content #message {
-  background: #640812 !important;
-  backdrop-filter: blur(20px) saturate(180%);
+  font-family: "Cal Sans", sans-serif !important;
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/4d69f96f65c2a976b5c30a02a3fbb2acf2aab088/Pattern.svg")
+      repeat,
+    /* lớp pattern */ (var(--default-accent)); /* lớp màu nền hiện tại */
+  background-size: 27px 27px;
   border: 1px solid #c3996c !important;
   color: var(--text-primary) !important;
+  text-align: center;
   font-size: 16px !important;
   font-weight: 400 !important;
   line-height: 1.5 !important;
-  padding: 16px 20px !important;
+  padding: 26px 20px 13px 20px !important;
   margin: 0 !important; /* Already set, ensures no gap */
   position: relative;
   top: -16px; /* Pulls the message box up to overlap the border of the author name */
@@ -233,16 +267,9 @@ yt-live-chat-text-message-renderer[is-highlighted] #content #message {
   animation: pulseGlow 2s ease-in-out infinite;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   order: 2;
-  z-index: -10 !important;
+  z-index: 1 !important;
   width: 100%;
   max-width: 700px;
-}
-
-/* Enhanced message bubble on hover */
-yt-live-chat-text-message-renderer #content #message:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
 }
 
 /* Member message variant */
