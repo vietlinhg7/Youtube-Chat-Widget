@@ -22,7 +22,7 @@ html {
 
   /* User Type Colors */
   /* linear-gradient(135deg, #667eea 0%, #764ba2 100%) */
-  --default-accent: #171717;
+  --default-accent: #640812;
   --moderator-accent: #171717;
   --member-accent: #22205f;
   --owner-accent: #640812;
@@ -249,9 +249,9 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
 yt-live-chat-text-message-renderer #content #message,
 yt-live-chat-text-message-renderer[is-highlighted] #content #message {
   font-family: "Cal Sans", sans-serif !important;
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/4d69f96f65c2a976b5c30a02a3fbb2acf2aab088/Pattern.svg")
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/6570d5254131ed2b68a536aca5f268726d2edd08/Pattern.svg")
       repeat,
-    /* lớp pattern */ (var(--default-accent)); /* lớp màu nền hiện tại */
+    /* lớp pattern */ var(--default-accent); /* lớp màu nền hiện tại */
   background-size: 27px 27px;
   border: 1px solid #c3996c !important;
   color: var(--text-primary) !important;
