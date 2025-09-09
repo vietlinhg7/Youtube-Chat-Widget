@@ -22,10 +22,20 @@ html {
 
   /* User Type Colors */
   /* linear-gradient(135deg, #667eea 0%, #764ba2 100%) */
-  --default-accent: #640812;
-  --moderator-accent: #171717;
-  --member-accent: #22205f;
-  --owner-accent: #640812;
+  --default-accent: linear-gradient(-45deg, #171717 0%, transparent 100%);
+  --moderator-accent: linear-gradient(-45deg, #171717 0%, transparent 100%);
+  --member-accent: linear-gradient(-45deg, #22205f 0%, transparent 100%);
+  --owner-accent: linear-gradient(-45deg, #640812 0%, transparent 100%);
+
+  --default-upper-accent: #171717;
+  --moderator-upper-accent: #171717;
+  --member-upper-accent: #22205f;
+  --owner-upper-accent: #640812;
+
+  --default-stroke: #a41e22;
+  --moderator-stroke: #bfbfbf;
+  --member-stroke: #bfbfbf;
+  --owner-stroke: #c3996c;
 
   /* Text Colors */
   --text-primary: #ffffff;
@@ -203,10 +213,10 @@ yt-live-chat-text-message-renderer[is-highlighted] #content #author-name {
   font-size: 15px !important;
   font-weight: 600 !important;
   color: var(--text-primary) !important;
-  background: var(--default-accent);
+  background: var(--default-upper-accent);
   padding: 8px 16px !important;
   border-radius: 20px;
-  border: 1px solid #c3996c;
+  border: 1px solid var(--default-stroke);
   position: relative;
   z-index: 5;
   text-align: center;
@@ -223,7 +233,8 @@ yt-live-chat-text-message-renderer[author-type="member"] #content #author-name,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
   #content
   #author-name {
-  background: var(--member-accent) !important;
+  background: var(--member-upper-accent) !important;
+  border: 1px solid var(--member-stroke);
 }
 
 /* Moderator name styling */
@@ -233,7 +244,8 @@ yt-live-chat-text-message-renderer[author-type="moderator"]
 yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
   #content
   #author-name {
-  background: var(--moderator-accent) !important;
+  background: var(--moderator-upper-accent) !important;
+  border: 1px solid var(--moderator-stroke);
 }
 
 /* Owner name styling */
@@ -241,19 +253,21 @@ yt-live-chat-text-message-renderer[author-type="owner"] #content #author-name,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
   #content
   #author-name {
-  background: var(--owner-accent) !important;
-  color: #2d3748 !important;
+  background: var(--owner-upper-accent) !important;
+  border: 1px solid var(--owner-stroke);
 }
 
 /* Modern Message Bubble - Connected to Name */
 yt-live-chat-text-message-renderer #content #message,
 yt-live-chat-text-message-renderer[is-highlighted] #content #message {
   font-family: "Cal Sans", sans-serif !important;
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/6570d5254131ed2b68a536aca5f268726d2edd08/Pattern.svg")
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
       repeat,
     /* lớp pattern */ var(--default-accent); /* lớp màu nền hiện tại */
-  background-size: 27px 27px;
-  border: 1px solid #c3996c !important;
+  background-size: 27px 27px, cover;
+  background-position: 0 0, center; /* pattern lặp từ góc trái, gradient căn giữa */
+  background-repeat: repeat, no-repeat;
+  border: 1px solid var(--default-stroke) !important;
   color: var(--text-primary) !important;
   text-align: center;
   font-size: 16px !important;
@@ -277,7 +291,13 @@ yt-live-chat-text-message-renderer[author-type="member"] #content #message,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
   #content
   #message {
-  background: var(--member-accent) !important;
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
+      repeat,
+    /* lớp pattern */ var(--member-accent); /* lớp màu nền hiện tại */
+  background-size: 27px 27px, cover;
+  background-position: 0 0, center; /* pattern lặp từ góc trái, gradient căn giữa */
+  background-repeat: repeat, no-repeat;
+  border: 1px solid var(--member-stroke) !important;
 }
 
 /* Moderator message variant */
@@ -285,7 +305,13 @@ yt-live-chat-text-message-renderer[author-type="moderator"] #content #message,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
   #content
   #message {
-  background: var(--moderator-accent) !important;
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
+      repeat,
+    var(--moderator-accent);
+  background-size: 27px 27px, cover;
+  background-position: 0 0, center; /* pattern lặp từ góc trái, gradient căn giữa */
+  background-repeat: repeat, no-repeat;
+  border: 1px solid var(--moderator-stroke) !important;
 }
 
 /* Owner message variant */
@@ -293,10 +319,16 @@ yt-live-chat-text-message-renderer[author-type="owner"] #content #message,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
   #content
   #message {
-  background: var(--owner-accent) !important;
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
+      repeat,
+    var(--owner-accent);
+  background-size: 27px 27px, cover;
+  background-repeat: repeat, no-repeat;
+  background-position: 0 0, center; /* pattern lặp từ góc trái, gradient căn giữa */
   color: #2d3748 !important;
   box-shadow: 0 8px 32px rgba(255, 236, 210, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid var(--owner-stroke) !important;
 }
 
 /* =================================================================
