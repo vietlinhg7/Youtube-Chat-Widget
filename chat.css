@@ -20,12 +20,33 @@ html {
   --glass-border: rgba(255, 255, 255, 0.2);
   --glass-shadow: rgba(0, 0, 0, 0.1);
 
-  /* User Type Colors */
-  /* linear-gradient(135deg, #667eea 0%, #764ba2 100%) */
-  --default-accent: linear-gradient(-45deg, #171717 0%, transparent 100%);
-  --moderator-accent: linear-gradient(-45deg, #171717 0%, transparent 100%);
-  --member-accent: linear-gradient(-45deg, #22205f 0%, transparent 100%);
-  --owner-accent: linear-gradient(-45deg, #640812 0%, transparent 100%);
+  /* Gradient color */
+  /* --default-accent: linear-gradient(
+    135deg,
+    rgba(23, 23, 23, 1) 0%,
+    rgba(23, 23, 23, 0) 100%
+  );
+  --moderator-accent: linear-gradient(
+    135deg,
+    rgba(23, 23, 23, 1) 0%,
+    rgba(23, 23, 23, 0) 100%
+  );
+  --member-accent: linear-gradient(
+    135deg,
+    rgba(34, 32, 95, 1) 0%,
+    rgba(34, 32, 95, 0) 100%
+  );
+  --owner-accent: linear-gradient(
+    135deg,
+    rgba(100, 8, 18, 1) 0%,
+    rgba(100, 8, 18, 0) 100%
+  ); */
+
+  /* Solid color */
+  --default-accent: #171717;
+  --moderator-accent: #171717;
+  --member-accent: #22205f;
+  --owner-accent: #640812;
 
   --default-upper-accent: #171717;
   --moderator-upper-accent: #171717;
@@ -261,12 +282,23 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
 yt-live-chat-text-message-renderer #content #message,
 yt-live-chat-text-message-renderer[is-highlighted] #content #message {
   font-family: "Cal Sans", sans-serif !important;
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
+  /* nền chính */
+  background:
+    /* 4 pin ở 4 góc */ url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/RedPin.svg")
+      no-repeat left 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/RedPin.svg")
+      no-repeat right 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/RedPin.svg")
+      no-repeat left 10px bottom 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/RedPin.svg")
+      no-repeat right 10px bottom 10px,
+    /* pattern + accent */
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
       repeat,
-    /* lớp pattern */ var(--default-accent); /* lớp màu nền hiện tại */
-  background-size: 27px 27px, cover;
-  background-position: 0 0, center; /* pattern lặp từ góc trái, gradient căn giữa */
-  background-repeat: repeat, no-repeat;
+    var(--default-accent);
+
+  background-size: 5px 5px, /* pin TL */ 5px 5px, /* pin TR */ 5px 5px,
+    /* pin BL */ 5px 5px, /* pin BR */ 27px 27px, /* pattern */ cover; /* màu nền */
   border: 1px solid var(--default-stroke) !important;
   color: var(--text-primary) !important;
   text-align: center;
@@ -291,12 +323,23 @@ yt-live-chat-text-message-renderer[author-type="member"] #content #message,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
   #content
   #message {
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
+  /* nền chính */
+  background:
+  /* 4 pin ở 4 góc */ url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat left 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat right 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat left 10px bottom 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat right 10px bottom 10px,
+    /* pattern + accent */
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
       repeat,
-    /* lớp pattern */ var(--member-accent); /* lớp màu nền hiện tại */
-  background-size: 27px 27px, cover;
-  background-position: 0 0, center; /* pattern lặp từ góc trái, gradient căn giữa */
-  background-repeat: repeat, no-repeat;
+    var(--member-accent);
+
+  background-size: 5px 5px, /* pin TL */ 5px 5px, /* pin TR */ 5px 5px,
+    /* pin BL */ 5px 5px, /* pin BR */ 27px 27px, /* pattern */ cover; /* màu nền */
   border: 1px solid var(--member-stroke) !important;
 }
 
@@ -305,12 +348,23 @@ yt-live-chat-text-message-renderer[author-type="moderator"] #content #message,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
   #content
   #message {
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
+  /* nền chính */
+  background:
+  /* 4 pin ở 4 góc */ url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat left 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat right 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat left 10px bottom 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat right 10px bottom 10px,
+    /* pattern + accent */
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
       repeat,
     var(--moderator-accent);
-  background-size: 27px 27px, cover;
-  background-position: 0 0, center; /* pattern lặp từ góc trái, gradient căn giữa */
-  background-repeat: repeat, no-repeat;
+
+  background-size: 5px 5px, /* pin TL */ 5px 5px, /* pin TR */ 5px 5px,
+    /* pin BL */ 5px 5px, /* pin BR */ 27px 27px, /* pattern */ cover; /* màu nền */
   border: 1px solid var(--moderator-stroke) !important;
 }
 
@@ -319,12 +373,23 @@ yt-live-chat-text-message-renderer[author-type="owner"] #content #message,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
   #content
   #message {
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
+  /* nền chính */
+  background:
+  /* 4 pin ở 4 góc */ url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/GoldenPin.svg")
+      no-repeat left 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/GoldenPin.svg")
+      no-repeat right 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/GoldenPin.svg")
+      no-repeat left 10px bottom 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/GoldenPin.svg")
+      no-repeat right 10px bottom 10px,
+    /* pattern + accent */
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
       repeat,
     var(--owner-accent);
-  background-size: 27px 27px, cover;
-  background-repeat: repeat, no-repeat;
-  background-position: 0 0, center; /* pattern lặp từ góc trái, gradient căn giữa */
+
+  background-size: 5px 5px, /* pin TL */ 5px 5px, /* pin TR */ 5px 5px,
+    /* pin BL */ 5px 5px, /* pin BR */ 27px 27px, /* pattern */ cover; /* màu nền */
   color: #2d3748 !important;
   box-shadow: 0 8px 32px rgba(255, 236, 210, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
