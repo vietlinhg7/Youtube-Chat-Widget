@@ -72,7 +72,7 @@ body {
   overflow: hidden;
   background: transparent;
   transform-origin: top left;
-  width: 800; /* base design size */
+  width: 400; /* base design size */
   height: 600px;
   overflow: hidden;
 }
@@ -319,7 +319,7 @@ yt-live-chat-text-message-renderer[is-highlighted] #content #message {
   order: 2;
   z-index: 1 !important;
   width: 100%;
-  max-width: 710px;
+  max-width: 318px;
 }
 
 /* Member message variant */
@@ -400,7 +400,7 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
 yt-live-chat-text-message-renderer #content::before {
   content: "";
   position: absolute;
-  inset: 17px -4px 12px -4px;
+  inset: 13px -4px 12px -4px;
 
   border: 15px solid transparent; /* độ dày border = vùng slice */
   border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/RedLine.svg");
@@ -413,7 +413,7 @@ yt-live-chat-text-message-renderer[author-type="owner"] #content::before,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"] {
   content: "";
   position: absolute;
-  inset: 17px -4px 12px -4px;
+  inset: 13px -4px 12px -4px;
 
   border: 15px solid transparent; /* độ dày border = vùng slice */
   border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenLine.svg");
@@ -426,7 +426,7 @@ yt-live-chat-text-message-renderer[author-type="member"] #content::before,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="member"] {
   content: "";
   position: absolute;
-  inset: 17px -4px 12px -4px;
+  inset: 13px -4px 12px -4px;
 
   border: 15px solid transparent; /* độ dày border = vùng slice */
   border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/SilverLine.svg");
@@ -439,7 +439,7 @@ yt-live-chat-text-message-renderer[author-type="moderator"] #content::before,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"] {
   content: "";
   position: absolute;
-  inset: 17px -4px 12px -4px;
+  inset: 13px -4px 12px -4px;
 
   border: 15px solid transparent; /* độ dày border = vùng slice */
   border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/SilverLine.svg");
@@ -452,7 +452,7 @@ yt-live-chat-text-message-renderer[author-type="member"] #content::after,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="member"] {
   content: "";
   position: absolute;
-  inset: 7px -14px 2px -14px;
+  inset: 3px -14px 2px -14px;
 
   background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/SilverConnerTop.svg")
       no-repeat top 0px right 0px,
@@ -466,7 +466,7 @@ yt-live-chat-text-message-renderer[author-type="owner"] #content::after,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"] {
   content: "";
   position: absolute;
-  inset: 7px -14px 2px -14px;
+  inset: 3px -14px 2px -14px;
 
   background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenConnerTop.svg")
       no-repeat top 0px right 0px,
