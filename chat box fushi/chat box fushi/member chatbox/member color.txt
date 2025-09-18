@@ -1,0 +1,7 @@
+chat box
+navi blue #213d65
+dark navi #14142e
+
+name tag
+power blue #c6d1e0
+blue #4179c9

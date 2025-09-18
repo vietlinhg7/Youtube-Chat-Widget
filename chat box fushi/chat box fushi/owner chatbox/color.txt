@@ -1,0 +1,7 @@
+chat box:
+yellow: #8e6b3e
+dark purple blue: #211d38
+
+name tag:
+orange yellow:#cc9b59
+bright yellow:#e0c87b

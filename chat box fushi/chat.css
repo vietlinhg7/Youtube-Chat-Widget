@@ -1,0 +1,570 @@
+/* =================================================================
+    YOUTUBE LIVE CHAT - MODERN REDESIGN
+    Contemporary glass morphism design with smooth animations
+    ================================================================= */
+
+/* Import Modern Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cal+Sans:ital,wght@0,400..900;1,400..900&display=swap");
+
+/* =================================================================
+    DESIGN SYSTEM
+    ================================================================= */
+html {
+  width: 100vw;
+  height: 100vh;
+}
+:root {
+  /* Glass Morphism Colors */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-bg-strong: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: rgba(0, 0, 0, 0.1);
+
+  /* Gradient color */
+  --default-accent: linear-gradient(90deg, #14142e 0%, #213d65 100%);
+  --moderator-accent: linear-gradient(
+    135deg,
+    rgba(23, 23, 23, 1) 0%,
+    rgba(23, 23, 23, 1) 100%
+  );
+  --member-accent: linear-gradient(
+    135deg,
+    rgba(34, 32, 95, 1) 0%,
+    #0a003c 100%
+  );
+  --owner-accent: linear-gradient(135deg, rgba(100, 8, 18, 1) 0%, #3b0000 100%);
+
+  /* Solid color */
+  /* --default-accent: #171717;
+  --moderator-accent: #171717;
+  --member-accent: #22205f;
+  --owner-accent: #640812; */
+
+  --default-upper-accent: #171717;
+  --moderator-upper-accent: #171717;
+  --member-upper-accent: #22205f;
+  --owner-upper-accent: #640812;
+
+  --default-stroke: #a41e22;
+  --moderator-stroke: #bfbfbf;
+  --member-stroke: #bfbfbf;
+  --owner-stroke: #c3996c;
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-accent: rgba(255, 255, 255, 0.9);
+
+  /* Spacing */
+  --message-gap: 12px;
+  --border-radius: 16px;
+  --border-radius-sm: 8px;
+}
+
+/* =================================================================
+    BASE STYLES
+    ================================================================= */
+body {
+  overflow: hidden;
+  background: transparent;
+  transform-origin: top left;
+  width: 400; /* base design size */
+  height: 600px;
+  overflow: hidden;
+}
+
+yt-live-chat-renderer {
+  background-color: transparent !important;
+}
+
+/* =================================================================
+    MODERN ANIMATIONS
+    ================================================================= */
+@keyframes slideInMessage {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) scale(0.8);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes avatarBounce {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(-2deg);
+  }
+  75% {
+    transform: scale(1.05) rotate(1deg);
+  }
+}
+
+/* =================================================================
+   HIDE ALL UNNECESSARY ELEMENTS
+   Keep only author-name + message
+   ================================================================= */
+
+/* Membership gifts, announcements, polls, banners */
+ytd-sponsorships-live-chat-gift-redemption-announcement-renderer,
+yt-live-chat-membership-item-renderer,
+yt-live-chat-paid-message-renderer,
+yt-live-chat-legacy-paid-message-renderer,
+yt-live-chat-paid-sticker-renderer,
+yt-live-chat-mode-change-message-renderer,
+yt-live-chat-viewer-engagement-message-renderer,
+yt-live-chat-restricted-participation-renderer,
+yt-live-chat-poll-renderer,
+yt-live-chat-banner-manager,
+yt-live-chat-banner-header-renderer,
+yt-live-chat-banner-renderer,
+yt-live-chat-header-renderer,
+yt-live-chat-ticker-renderer,
+yt-live-chat-message-input-renderer,
+#reaction-control-panel {
+  display: none !important;
+  background-color: transparent !important;
+}
+yt-button-view-model,
+#before-content-buttons.yt-live-chat-text-message-renderer {
+  display: none !important;
+}
+
+yt-live-chat-text-message-renderer[author-is-owner] {
+  background-color: transparent !important;
+}
+
+/* Author badges (member, moderator, owner…) */
+yt-live-chat-text-message-renderer #author-badges,
+yt-live-chat-author-chip.yt-live-chat-membership-item-renderer #chat-badges,
+yt-live-chat-author-badge-renderer[type="member"],
+yt-live-chat-author-badge-renderer[type="moderator"],
+yt-live-chat-author-badge-renderer[type="owner"] {
+  display: none !important;
+  vertical-align: text-top !important;
+  text-decoration: none !important;
+}
+
+/* Author photos / avatars */
+yt-live-chat-text-message-renderer #author-photo,
+yt-live-chat-text-message-renderer[is-highlighted] #author-photo {
+  display: none !important;
+}
+
+/* Deleted messages */
+yt-live-chat-text-message-renderer[is-deleted],
+yt-live-chat-legacy-paid-message-renderer[is-deleted] {
+  display: none !important;
+}
+
+/* =================================================================
+    CONTAINER SETUP
+    ================================================================= */
+yt-live-chat-item-list-renderer #items,
+yt-live-chat-item-list-renderer #item-scroller {
+  overflow: hidden !important;
+}
+
+yt-live-chat-renderer yt-live-chat-text-message-renderer #content,
+yt-live-chat-renderer
+  yt-live-chat-text-message-renderer[is-highlighted]
+  #content,
+yt-live-chat-renderer yt-live-chat-paid-message-renderer #content,
+yt-live-chat-renderer yt-live-chat-legacy-paid-message-renderer #content {
+  overflow: visible !important;
+}
+
+/* =================================================================
+    MODERN MESSAGE DESIGN
+    ================================================================= */
+yt-live-chat-text-message-renderer,
+yt-live-chat-text-message-renderer[is-highlighted] {
+  margin: 0 0 var(--message-gap) 0;
+  padding-left: 24px;
+  display: flex;
+  align-items: flex-start;
+  animation: slideInMessage 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+/* Message Container - Vertical Layout */
+yt-live-chat-text-message-renderer #content,
+yt-live-chat-text-message-renderer[is-highlighted] #content {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  animation-delay: 0.1s;
+  z-index: 0;
+}
+
+yt-live-chat-text-message-renderer #content #author-name,
+yt-live-chat-text-message-renderer[is-highlighted] #content #author-name {
+  font-family: "Playfair Display", serif !important;
+  display: block;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  background: var(--default-upper-accent);
+  padding: 8px 30px !important;
+  border-radius: 20px;
+  border: 1px solid var(--default-stroke);
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  order: 3;
+
+  width: fit-content;
+  margin-left: auto; /* 🆕 */
+  margin-right: auto; /* 🆕 */
+  transform: translateX(3px);
+  margin-bottom: -30px;
+}
+
+/* Member name styling */
+yt-live-chat-text-message-renderer[author-type="member"] #content #author-name,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
+  #content
+  #author-name {
+  background: var(--member-upper-accent) !important;
+  border: 1px solid var(--member-stroke);
+}
+
+/* Moderator name styling */
+yt-live-chat-text-message-renderer[author-type="moderator"]
+  #content
+  #author-name,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
+  #content
+  #author-name {
+  background: var(--moderator-upper-accent) !important;
+  border: 1px solid var(--moderator-stroke);
+}
+
+/* Owner name styling */
+yt-live-chat-text-message-renderer[author-type="owner"] #content #author-name,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
+  #content
+  #author-name {
+  background: var(--owner-upper-accent) !important;
+  border: 1px solid var(--owner-stroke);
+}
+
+/* Modern Message Bubble - Connected to Name */
+yt-live-chat-text-message-renderer #content #message,
+yt-live-chat-text-message-renderer[is-highlighted] #content #message {
+  font-family: "Cal Sans", sans-serif !important;
+  /* nền chính */
+  background:
+    /* pattern + accent */
+      /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
+      repeat, */ var(
+    --default-accent
+  );
+  border-radius: calc(50px / 5);
+
+  background-size: /* pattern */ cover; /* màu nền */
+  color: var(--text-primary) !important;
+  text-align: center;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  padding: 26px 20px 13px 20px !important;
+  margin: 0 !important; /* Already set, ensures no gap */
+  position: relative;
+  top: -16px; /* Pulls the message box up to overlap the border of the author name */
+  word-wrap: break-word;
+  animation: pulseGlow 2s ease-in-out infinite;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  order: 2;
+  z-index: 1 !important;
+  width: 100%;
+  max-width: 318px;
+}
+
+/* Member message variant */
+yt-live-chat-text-message-renderer[author-type="member"] #content #message,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
+  #content
+  #message {
+  /* nền chính */
+  background:
+  /* 4 pin ở 4 góc */ url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat left 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat right 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat left 10px bottom 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat right 10px bottom 10px,
+    /* pattern + accent */
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
+      repeat,
+    var(--member-accent);
+
+  background-size: 5px 5px, /* pin TL */ 5px 5px, /* pin TR */ 5px 5px,
+    /* pin BL */ 5px 5px, /* pin BR */ 27px 27px, /* pattern */ cover; /* màu nền */
+  border: 1px solid var(--member-stroke) !important;
+}
+
+/* Moderator message variant */
+yt-live-chat-text-message-renderer[author-type="moderator"] #content #message,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
+  #content
+  #message {
+  /* nền chính */
+  background:
+  /* 4 pin ở 4 góc */ url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat left 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat right 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat left 10px bottom 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/SilverPin.svg")
+      no-repeat right 10px bottom 10px,
+    /* pattern + accent */
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
+      repeat,
+    var(--moderator-accent);
+
+  background-size: 5px 5px, /* pin TL */ 5px 5px, /* pin TR */ 5px 5px,
+    /* pin BL */ 5px 5px, /* pin BR */ 27px 27px, /* pattern */ cover; /* màu nền */
+  border: 1px solid var(--moderator-stroke) !important;
+}
+
+/* Owner message variant */
+yt-live-chat-text-message-renderer[author-type="owner"] #content #message,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
+  #content
+  #message {
+  /* nền chính */
+  background:
+  /* 4 pin ở 4 góc */ url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/GoldenPin.svg")
+      no-repeat left 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/GoldenPin.svg")
+      no-repeat right 10px top 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/GoldenPin.svg")
+      no-repeat left 10px bottom 10px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/9c13a8346e85f3e665712ca1e14f17550fa3e622/GoldenPin.svg")
+      no-repeat right 10px bottom 10px,
+    /* pattern + accent */
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/85e803cc4128fc8208d22a4817a11a2c85ceea35/Pattern.svg")
+      repeat,
+    var(--owner-accent);
+
+  background-size: 5px 5px, /* pin TL */ 5px 5px, /* pin TR */ 5px 5px,
+    /* pin BL */ 5px 5px, /* pin BR */ 27px 27px, /* pattern */ cover; /* màu nền */
+  border: 1px solid var(--owner-stroke) !important;
+}
+
+yt-live-chat-text-message-renderer #content::before {
+  content: "";
+  position: absolute;
+  inset: 13px -4px 12px -4px;
+
+  border: 15px solid transparent; /* độ dày border = vùng slice */
+  border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/RedLine.svg");
+  border-image-slice: 12 fill; /* 22px cắt ra từ mỗi cạnh */
+  border-image-repeat: stretch; /* hoặc round, repeat */
+  z-index: -1;
+}
+
+yt-live-chat-text-message-renderer[author-type="owner"] #content::before,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"] {
+  content: "";
+  position: absolute;
+  inset: 13px -4px 12px -4px;
+
+  border: 15px solid transparent; /* độ dày border = vùng slice */
+  border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenLine.svg");
+  border-image-slice: 15 fill; /* 22px cắt ra từ mỗi cạnh */
+  border-image-repeat: stretch; /* hoặc round, repeat */
+  z-index: -1;
+}
+
+yt-live-chat-text-message-renderer[author-type="member"] #content::before,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="member"] {
+  content: "";
+  position: absolute;
+  inset: 13px -4px 12px -4px;
+
+  border: 15px solid transparent; /* độ dày border = vùng slice */
+  border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/SilverLine.svg");
+  border-image-slice: 15 fill; /* 22px cắt ra từ mỗi cạnh */
+  border-image-repeat: stretch; /* hoặc round, repeat */
+  z-index: -1;
+}
+
+yt-live-chat-text-message-renderer[author-type="moderator"] #content::before,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"] {
+  content: "";
+  position: absolute;
+  inset: 13px -4px 12px -4px;
+
+  border: 15px solid transparent; /* độ dày border = vùng slice */
+  border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/SilverLine.svg");
+  border-image-slice: 15 fill; /* 22px cắt ra từ mỗi cạnh */
+  border-image-repeat: stretch; /* hoặc round, repeat */
+  z-index: -1;
+}
+
+yt-live-chat-text-message-renderer[author-type="member"] #content::after,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="member"] {
+  content: "";
+  position: absolute;
+  inset: 3px -14px 2px -14px;
+
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/SilverConnerTop.svg")
+      no-repeat top 0px right 0px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/SilverConnerBottom.svg")
+      no-repeat left 0px bottom 0px;
+  background-size: 57px 57px, 57px 57px;
+  z-index: -1;
+}
+
+yt-live-chat-text-message-renderer[author-type="owner"] #content::after,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"] {
+  content: "";
+  position: absolute;
+  inset: 3px -14px 2px -14px;
+
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenConnerTop.svg")
+      no-repeat top 0px right 0px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenConnerBottom.svg")
+      no-repeat left 0px bottom 0px;
+  /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
+      no-repeat center top -10px; */
+  background-size: 57px 57px, 57px 57px, 100px;
+  z-index: 12;
+}
+
+yt-live-chat-text-message-renderer[author-type="owner"] {
+  padding-top: 21px;
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
+    no-repeat center top;
+  background-size: 90px;
+}
+
+yt-live-chat-text-message-renderer[author-type="member"] {
+  padding-top: 13px;
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/SilverCharm.svg")
+    no-repeat center top;
+  background-size: 60px;
+}
+/* =================================================================
+    MICRO-INTERACTIONS
+    ================================================================= */
+/* Message entrance stagger effect */
+yt-live-chat-text-message-renderer:nth-child(1) {
+  animation-delay: 0s;
+}
+yt-live-chat-text-message-renderer:nth-child(2) {
+  animation-delay: 0.1s;
+}
+yt-live-chat-text-message-renderer:nth-child(3) {
+  animation-delay: 0.2s;
+}
+yt-live-chat-text-message-renderer:nth-child(4) {
+  animation-delay: 0.3s;
+}
+yt-live-chat-text-message-renderer:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+/* =================================================================
+    TIMESTAMP & UTILITIES
+    ================================================================= */
+yt-live-chat-text-message-renderer #timestamp {
+  color: var(--text-secondary) !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  opacity: 0.6 !important;
+  font-family: "JetBrains Mono", monospace !important;
+}
+
+/* Link styling */
+yt-live-chat-text-message-renderer a,
+yt-live-chat-legacy-paid-message-renderer a {
+  color: #4facfe !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease;
+}
+
+yt-live-chat-text-message-renderer a:hover {
+  color: #00f2fe !important;
+  text-shadow: 0 0 8px rgba(79, 172, 254, 0.3);
+}
+
+/* Hide deleted messages */
+yt-live-chat-text-message-renderer[is-deleted],
+yt-live-chat-legacy-paid-message-renderer[is-deleted] {
+  display: none !important;
+}
+
+/* =================================================================
+    RESPONSIVE DESIGN
+    ================================================================= */
+@media (max-width: 480px) {
+  yt-live-chat-text-message-renderer #content #message {
+    font-size: 14px !important;
+    padding: 12px 16px !important;
+  }
+
+  yt-live-chat-text-message-renderer #author-photo {
+    width: 24px;
+    height: 24px;
+    border-radius: 24px;
+    transform: scale(2, 2);
+    z-index: -50 !important;
+    position: relative;
+    top: 45px;
+    display: block;
+    border: 1px solid #181b2d;
+    margin-right: 8px;
+  }
+
+  yt-live-chat-text-message-renderer #content #author-name {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+  }
+}
+
+/* =================================================================
+    ACCESSIBILITY ENHANCEMENTS
+    ================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

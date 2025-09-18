@@ -1,0 +1,7 @@
+chat box
+red velvet #4a000c
+red #d1091a
+
+name tag
+red light #d2091a
+red powder #ea4050

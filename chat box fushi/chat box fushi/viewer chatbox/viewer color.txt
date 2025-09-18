@@ -1,0 +1,7 @@
+chat box:
+purple: #322e50
+dark purple: #201d37
+
+name tag:
+purple light:#3b345d
+purple powder:#7d6ea5
