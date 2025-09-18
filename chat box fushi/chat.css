@@ -21,17 +21,13 @@ html {
   --glass-shadow: rgba(0, 0, 0, 0.1);
 
   /* Gradient color */
-  --default-accent: linear-gradient(90deg, #14142e 0%, #213d65 100%);
+  --default-accent: linear-gradient(90deg, #201d37 0%, #322e50 100%);
   --moderator-accent: linear-gradient(
     135deg,
     rgba(23, 23, 23, 1) 0%,
     rgba(23, 23, 23, 1) 100%
   );
-  --member-accent: linear-gradient(
-    135deg,
-    rgba(34, 32, 95, 1) 0%,
-    #0a003c 100%
-  );
+  --member-accent: linear-gradient(90deg, #14142e 0%, #213d65 100%);
   --owner-accent: linear-gradient(135deg, rgba(100, 8, 18, 1) 0%, #3b0000 100%);
 
   /* Solid color */
@@ -229,26 +225,51 @@ yt-live-chat-text-message-renderer[is-highlighted] #content {
 yt-live-chat-text-message-renderer #content #author-name,
 yt-live-chat-text-message-renderer[is-highlighted] #content #author-name {
   font-family: "Playfair Display", serif !important;
-  display: block;
+  display: inline-block;
   font-size: 12px !important;
   font-weight: 600 !important;
   color: var(--text-primary) !important;
-  background: var(--default-upper-accent);
-  padding: 8px 30px !important;
-  border-radius: 20px;
-  border: 1px solid var(--default-stroke);
+
   position: relative;
   z-index: 5;
-  text-align: center;
   order: 3;
 
+  padding: 8px 30px !important; /* giờ padding chỉnh chữ thôi */
+  text-align: center;
+
   width: fit-content;
-  margin-left: auto; /* 🆕 */
-  margin-right: auto; /* 🆕 */
-  transform: translateX(3px);
+  margin-left: 20px;
+  margin-right: auto;
   margin-bottom: -30px;
 }
 
+/* nền stretch (trái) */
+yt-live-chat-text-message-renderer #content #author-name::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -35px;
+  bottom: 0;
+  right: 0; /* phủ toàn bộ, chừa chỗ cho ::after */
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/013fe5a8d41c4718a3ffdab85d402bb4ea9b5a2b/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%209.svg")
+    repeat-x left center;
+  background-size: auto 100%; /* stretch ngang */
+  z-index: -2;
+}
+
+/* nền cố định (phải) */
+yt-live-chat-text-message-renderer #content #author-name::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -22px;
+  bottom: 0;
+  width: 60px; /* đúng width gốc của SVG 2 */
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/013fe5a8d41c4718a3ffdab85d402bb4ea9b5a2b/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%204.svg")
+    no-repeat right center;
+  background-size: contain; /* giữ nguyên tỉ lệ */
+  z-index: -1;
+}
 /* Member name styling */
 yt-live-chat-text-message-renderer[author-type="member"] #content #author-name,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
