@@ -243,33 +243,6 @@ yt-live-chat-text-message-renderer[is-highlighted] #content #author-name {
   margin-bottom: -30px;
 }
 
-/* nền stretch (trái) */
-yt-live-chat-text-message-renderer #content #author-name::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -35px;
-  bottom: 0;
-  right: 0; /* phủ toàn bộ, chừa chỗ cho ::after */
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/013fe5a8d41c4718a3ffdab85d402bb4ea9b5a2b/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%209.svg")
-    repeat-x left center;
-  background-size: auto 100%; /* stretch ngang */
-  z-index: -2;
-}
-
-/* nền cố định (phải) */
-yt-live-chat-text-message-renderer #content #author-name::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: -22px;
-  bottom: 0;
-  width: 60px; /* đúng width gốc của SVG 2 */
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/013fe5a8d41c4718a3ffdab85d402bb4ea9b5a2b/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%204.svg")
-    no-repeat right center;
-  background-size: contain; /* giữ nguyên tỉ lệ */
-  z-index: -1;
-}
 /* Member name styling */
 yt-live-chat-text-message-renderer[author-type="member"] #content #author-name,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
