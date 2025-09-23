@@ -4,7 +4,8 @@
     ================================================================= */
 
 /* Import Modern Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cal+Sans:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Texturina:ital,wght@1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,300;1,300&display=swap");
 
 /* =================================================================
     DESIGN SYSTEM
@@ -224,23 +225,61 @@ yt-live-chat-text-message-renderer[is-highlighted] #content {
 
 yt-live-chat-text-message-renderer #content #author-name,
 yt-live-chat-text-message-renderer[is-highlighted] #content #author-name {
-  font-family: "Playfair Display", serif !important;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
   display: inline-block;
-  font-size: 12px !important;
-  font-weight: 600 !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
   color: var(--text-primary) !important;
 
   position: relative;
   z-index: 5;
   order: 3;
 
-  padding: 8px 30px !important; /* giờ padding chỉnh chữ thôi */
+  padding: 4px 60px;
   text-align: center;
 
-  width: fit-content;
-  margin-left: 20px;
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/viewer.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  background-clip: border-box;
+
   margin-right: auto;
-  margin-bottom: -30px;
+  margin-top: 5px;
+  margin-bottom: 18px;
+}
+
+yt-live-chat-text-message-renderer #content::after,
+yt-live-chat-text-message-renderer[is-highlighted] {
+  content: "";
+  position: absolute;
+  inset: -2px -3px 0px -10px;
+
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%206.svg")
+      no-repeat top 0px left 0px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%203.svg")
+      no-repeat top 1px left 8px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%2010.svg")
+      no-repeat top 1px left 30px;
+  /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
+      no-repeat center top -10px; */
+  background-size: 48px 48px, 45px 45px, auto 85%;
+  z-index: 12;
+}
+
+yt-live-chat-text-message-renderer #content::before,
+yt-live-chat-text-message-renderer[is-highlighted] {
+  content: "";
+  position: absolute;
+  inset: -2px -3px 0px -10px;
+
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%2010.svg")
+    no-repeat top 1px left 30px;
+  /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
+      no-repeat center top -10px; */
+  background-size: 48px 48px, 45px 45px, auto 85%;
+  z-index: 12;
 }
 
 /* Member name styling */
@@ -275,7 +314,10 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
 /* Modern Message Bubble - Connected to Name */
 yt-live-chat-text-message-renderer #content #message,
 yt-live-chat-text-message-renderer[is-highlighted] #content #message {
-  font-family: "Cal Sans", sans-serif !important;
+  display: inline-block;
+  font-family: "Alegreya Sans", sans-serif;
+  font-style: italic;
+  font-weight: 300;
   /* nền chính */
   background:
     /* pattern + accent */
@@ -288,11 +330,9 @@ yt-live-chat-text-message-renderer[is-highlighted] #content #message {
   background-size: /* pattern */ cover; /* màu nền */
   color: var(--text-primary) !important;
   text-align: center;
-  font-size: 16px !important;
-  font-weight: 400 !important;
-  line-height: 1.5 !important;
-  padding: 26px 20px 13px 20px !important;
-  margin: 0 !important; /* Already set, ensures no gap */
+  font-size: 20px !important;
+  line-height: 1.25 !important;
+  padding: 13px 20px !important;
   position: relative;
   top: -16px; /* Pulls the message box up to overlap the border of the author name */
   word-wrap: break-word;
@@ -300,8 +340,9 @@ yt-live-chat-text-message-renderer[is-highlighted] #content #message {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   order: 2;
   z-index: 1 !important;
-  width: 100%;
-  max-width: 318px;
+  display: inline-block;
+  width: auto; /* để nó fit theo text */
+  margin-left: 45px;
 }
 
 /* Member message variant */
@@ -379,15 +420,15 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
   border: 1px solid var(--owner-stroke) !important;
 }
 
-yt-live-chat-text-message-renderer #content::before {
+/*yt-live-chat-text-message-renderer #content::before {
   content: "";
   position: absolute;
   inset: 13px -4px 12px -4px;
 
-  border: 15px solid transparent; /* độ dày border = vùng slice */
+  border: 15px solid transparent; 
   border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/RedLine.svg");
-  border-image-slice: 12 fill; /* 22px cắt ra từ mỗi cạnh */
-  border-image-repeat: stretch; /* hoặc round, repeat */
+  border-image-slice: 12 fill;
+  border-image-repeat: stretch; 
   z-index: -1;
 }
 
@@ -397,12 +438,12 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"] {
   position: absolute;
   inset: 13px -4px 12px -4px;
 
-  border: 15px solid transparent; /* độ dày border = vùng slice */
+  border: 15px solid transparent;
   border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenLine.svg");
-  border-image-slice: 15 fill; /* 22px cắt ra từ mỗi cạnh */
-  border-image-repeat: stretch; /* hoặc round, repeat */
+  border-image-slice: 15 fill; 
+  border-image-repeat: stretch; 
   z-index: -1;
-}
+}*/
 
 yt-live-chat-text-message-renderer[author-type="member"] #content::before,
 yt-live-chat-text-message-renderer[is-highlighted][author-type="member"] {
@@ -529,7 +570,6 @@ yt-live-chat-legacy-paid-message-renderer[is-deleted] {
     ================================================================= */
 @media (max-width: 480px) {
   yt-live-chat-text-message-renderer #content #message {
-    font-size: 14px !important;
     padding: 12px 16px !important;
   }
 
@@ -544,11 +584,6 @@ yt-live-chat-legacy-paid-message-renderer[is-deleted] {
     display: block;
     border: 1px solid #181b2d;
     margin-right: 8px;
-  }
-
-  yt-live-chat-text-message-renderer #content #author-name {
-    font-size: 12px !important;
-    padding: 4px 10px !important;
   }
 }
 
