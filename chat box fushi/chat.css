@@ -255,6 +255,7 @@ yt-live-chat-text-message-renderer[is-highlighted] #content #author-name {
   margin-right: auto;
   margin-top: 5px;
   margin-bottom: 18px;
+  overflow: visible;
 }
 
 /* Member name styling */
@@ -294,11 +295,13 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
   background-repeat: no-repeat;
   background-origin: border-box;
   background-clip: border-box;
+  margin-top: 20px;
 }
 
 /*Viewer name assets*/
 yt-live-chat-text-message-renderer #content::after,
 yt-live-chat-text-message-renderer[is-highlighted] {
+  overflow: visible;
   content: "";
   position: absolute;
   inset: -2px -3px 0px -10px;
@@ -383,7 +386,7 @@ yt-live-chat-text-message-renderer[author-type="moderator"][is-highlighted] {
 yt-live-chat-text-message-renderer[author-type="moderator"] #content::before {
   content: "";
   position: absolute;
-  inset: -2px -3px 0px -15px;
+  inset: -5px -3px 0px -15px;
 
   background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%2010.svg")
     no-repeat top calc(90% + 13px) left calc(20px);
@@ -398,25 +401,25 @@ yt-live-chat-text-message-renderer[author-type="owner"] #content::after,
 yt-live-chat-text-message-renderer[author-type="owner"][is-highlighted] {
   content: "";
   position: absolute;
-  inset: -2px -3px 0px -10px;
+  inset: 3px -3px 0px -10px;
 
   background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/light.svg")
       no-repeat top calc(90% + 5px) left calc(25px),
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/3ef775ee37010579572041af443f9a6afa757c20/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/hat%20owner.sv")
-      no-repeat top 0px left 0px,
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/3ef775ee37010579572041af443f9a6afa757c20/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/khung%20owner.svg")
-      no-repeat top 1px left 8px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/3ef775ee37010579572041af443f9a6afa757c20/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/hat%20owner.svg")
+      no-repeat top -3px left 0px,
+    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/2a859750159a0261a74d3fad91ce91b195a1c9bb/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/khung%20owner.svg")
+      no-repeat top 11px left 8px,
     url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/link.svg")
-      no-repeat top 1px left 30px;
+      no-repeat top 11px left 30px;
   /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
       no-repeat center top -10px; */
-  background-size: 10px 10px, 48px 48px, 45px 45px, auto 85%;
+  background-size: 10px 10px, 60px 60px, 45px 45px, auto 85%;
   z-index: 12;
 }
 yt-live-chat-text-message-renderer[author-type="owner"] #content::before {
   content: "";
   position: absolute;
-  inset: -2px -3px 0px -10px;
+  inset: 3px -3px 0px -10px;
 
   background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/aura.svg")
     no-repeat top calc(90% + 13px) left calc(15px);
@@ -480,6 +483,7 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
   #content
   #message {
   background: var(--owner-accent);
+  padding: 13px 80px !important;
 }
 
 yt-live-chat-text-message-renderer[author-type="moderator"]
@@ -495,6 +499,25 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
   width: 40px;
   height: 40px;
   background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%204.svg")
+    no-repeat no-repeat center;
+  background-size: contain;
+
+  z-index: 16;
+}
+
+yt-live-chat-text-message-renderer[author-type="owner"]
+  #content
+  #message::after,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
+  #content
+  #message::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: 0px;
+  height: 54px;
+  width: 116px;
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/2a859750159a0261a74d3fad91ce91b195a1c9bb/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/barrier%202.svg")
     no-repeat no-repeat center;
   background-size: contain;
 
