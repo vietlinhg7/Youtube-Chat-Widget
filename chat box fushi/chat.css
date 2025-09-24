@@ -1,645 +1,645 @@
-/* =================================================================
-    YOUTUBE LIVE CHAT - MODERN REDESIGN
-    Contemporary glass morphism design with smooth animations
+  /* =================================================================
+      YOUTUBE LIVE CHAT - MODERN REDESIGN
+      Contemporary glass morphism design with smooth animations
+      ================================================================= */
+
+  /* Import Modern Fonts */
+  @import url("https://fonts.googleapis.com/css2?family=Texturina:ital,wght@1,300&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,300;1,300&display=swap");
+
+  /* =================================================================
+      DESIGN SYSTEM
+      ================================================================= */
+  html {
+    width: 100vw;
+    height: 100vh;
+  }
+  :root {
+    /* Glass Morphism Colors */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-bg-strong: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Gradient color */
+    --default-accent: linear-gradient(45deg, #201d37 0%, #322e50 100%);
+    --moderator-accent: linear-gradient(45deg, #4a000c 0%, #d1091a 100%);
+    --member-accent: linear-gradient(45deg, #14142e 0%, #213d65 100%);
+    --owner-accent: linear-gradient(45deg, #8e6b3e 0%, #211d38 100%);
+
+    /* Solid color */
+    /* --default-accent: #171717;
+    --moderator-accent: #171717;
+    --member-accent: #22205f;
+    --owner-accent: #640812; */
+
+    --default-upper-accent: #171717;
+    --moderator-upper-accent: #171717;
+    --member-upper-accent: #22205f;
+    --owner-upper-accent: #640812;
+
+    --default-stroke: #a41e22;
+    --moderator-stroke: #bfbfbf;
+    --member-stroke: #bfbfbf;
+    --owner-stroke: #c3996c;
+
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --text-accent: rgba(255, 255, 255, 0.9);
+
+    /* Spacing */
+    --message-gap: 12px;
+    --border-radius: 16px;
+    --border-radius-sm: 8px;
+  }
+
+  /* =================================================================
+      BASE STYLES
+      ================================================================= */
+  body {
+    overflow: hidden;
+    background: transparent;
+    transform-origin: top left;
+    width: 400; /* base design size */
+    height: 600px;
+    overflow: hidden;
+  }
+
+  yt-live-chat-renderer {
+    background-color: transparent !important;
+  }
+
+  /* =================================================================
+      MODERN ANIMATIONS
+      ================================================================= */
+  @keyframes slideInMessage {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px) scale(0.8);
+      filter: blur(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes avatarBounce {
+    0%,
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+    25% {
+      transform: scale(1.1) rotate(-2deg);
+    }
+    75% {
+      transform: scale(1.05) rotate(1deg);
+    }
+  }
+
+  @keyframes breathingBlink {
+    0%,
+    100% {
+      opacity: 0.6; /* mờ */
+    }
+    50% {
+      opacity: 1; /* sáng mạnh */
+    }
+  }
+
+  /* =================================================================
+    HIDE ALL UNNECESSARY ELEMENTS
+    Keep only author-name + message
     ================================================================= */
 
-/* Import Modern Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Texturina:ital,wght@1,300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,300;1,300&display=swap");
-
-/* =================================================================
-    DESIGN SYSTEM
-    ================================================================= */
-html {
-  width: 100vw;
-  height: 100vh;
-}
-:root {
-  /* Glass Morphism Colors */
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-bg-strong: rgba(255, 255, 255, 0.15);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --glass-shadow: rgba(0, 0, 0, 0.1);
-
-  /* Gradient color */
-  --default-accent: linear-gradient(45deg, #201d37 0%, #322e50 100%);
-  --moderator-accent: linear-gradient(45deg, #4a000c 0%, #d1091a 100%);
-  --member-accent: linear-gradient(45deg, #14142e 0%, #213d65 100%);
-  --owner-accent: linear-gradient(45deg, #8e6b3e 0%, #211d38 100%);
-
-  /* Solid color */
-  /* --default-accent: #171717;
-  --moderator-accent: #171717;
-  --member-accent: #22205f;
-  --owner-accent: #640812; */
-
-  --default-upper-accent: #171717;
-  --moderator-upper-accent: #171717;
-  --member-upper-accent: #22205f;
-  --owner-upper-accent: #640812;
-
-  --default-stroke: #a41e22;
-  --moderator-stroke: #bfbfbf;
-  --member-stroke: #bfbfbf;
-  --owner-stroke: #c3996c;
-
-  /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.8);
-  --text-accent: rgba(255, 255, 255, 0.9);
-
-  /* Spacing */
-  --message-gap: 12px;
-  --border-radius: 16px;
-  --border-radius-sm: 8px;
-}
-
-/* =================================================================
-    BASE STYLES
-    ================================================================= */
-body {
-  overflow: hidden;
-  background: transparent;
-  transform-origin: top left;
-  width: 400; /* base design size */
-  height: 600px;
-  overflow: hidden;
-}
-
-yt-live-chat-renderer {
-  background-color: transparent !important;
-}
-
-/* =================================================================
-    MODERN ANIMATIONS
-    ================================================================= */
-@keyframes slideInMessage {
-  0% {
-    opacity: 0;
-    transform: translateX(-100px) scale(0.8);
-    filter: blur(4px);
+  /* Membership gifts, announcements, polls, banners */
+  ytd-sponsorships-live-chat-gift-redemption-announcement-renderer,
+  yt-live-chat-membership-item-renderer,
+  yt-live-chat-paid-message-renderer,
+  yt-live-chat-legacy-paid-message-renderer,
+  yt-live-chat-paid-sticker-renderer,
+  yt-live-chat-mode-change-message-renderer,
+  yt-live-chat-viewer-engagement-message-renderer,
+  yt-live-chat-restricted-participation-renderer,
+  yt-live-chat-poll-renderer,
+  yt-live-chat-banner-manager,
+  yt-live-chat-banner-header-renderer,
+  yt-live-chat-banner-renderer,
+  yt-live-chat-header-renderer,
+  yt-live-chat-ticker-renderer,
+  yt-live-chat-message-input-renderer,
+  #reaction-control-panel {
+    display: none !important;
+    background-color: transparent !important;
   }
-  100% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-@keyframes pulseGlow {
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
-  }
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes avatarBounce {
-  0%,
-  100% {
-    transform: scale(1) rotate(0deg);
-  }
-  25% {
-    transform: scale(1.1) rotate(-2deg);
-  }
-  75% {
-    transform: scale(1.05) rotate(1deg);
-  }
-}
-
-@keyframes breathingBlink {
-  0%,
-  100% {
-    opacity: 0.6; /* mờ */
-  }
-  50% {
-    opacity: 1; /* sáng mạnh */
-  }
-}
-
-/* =================================================================
-   HIDE ALL UNNECESSARY ELEMENTS
-   Keep only author-name + message
-   ================================================================= */
-
-/* Membership gifts, announcements, polls, banners */
-ytd-sponsorships-live-chat-gift-redemption-announcement-renderer,
-yt-live-chat-membership-item-renderer,
-yt-live-chat-paid-message-renderer,
-yt-live-chat-legacy-paid-message-renderer,
-yt-live-chat-paid-sticker-renderer,
-yt-live-chat-mode-change-message-renderer,
-yt-live-chat-viewer-engagement-message-renderer,
-yt-live-chat-restricted-participation-renderer,
-yt-live-chat-poll-renderer,
-yt-live-chat-banner-manager,
-yt-live-chat-banner-header-renderer,
-yt-live-chat-banner-renderer,
-yt-live-chat-header-renderer,
-yt-live-chat-ticker-renderer,
-yt-live-chat-message-input-renderer,
-#reaction-control-panel {
-  display: none !important;
-  background-color: transparent !important;
-}
-yt-button-view-model,
-#before-content-buttons.yt-live-chat-text-message-renderer {
-  display: none !important;
-}
-
-yt-live-chat-text-message-renderer[author-is-owner] {
-  background-color: transparent !important;
-}
-
-/* Author badges (member, moderator, owner…) */
-yt-live-chat-text-message-renderer #author-badges,
-yt-live-chat-author-chip.yt-live-chat-membership-item-renderer #chat-badges,
-yt-live-chat-author-badge-renderer[type="member"],
-yt-live-chat-author-badge-renderer[type="moderator"],
-yt-live-chat-author-badge-renderer[type="owner"] {
-  display: none !important;
-  vertical-align: text-top !important;
-  text-decoration: none !important;
-}
-
-/* Author photos / avatars */
-yt-live-chat-text-message-renderer #author-photo,
-yt-live-chat-text-message-renderer[is-highlighted] #author-photo {
-  display: none !important;
-}
-
-/* Deleted messages */
-yt-live-chat-text-message-renderer[is-deleted],
-yt-live-chat-legacy-paid-message-renderer[is-deleted] {
-  display: none !important;
-}
-
-/* =================================================================
-    CONTAINER SETUP
-    ================================================================= */
-yt-live-chat-item-list-renderer #items,
-yt-live-chat-item-list-renderer #item-scroller {
-  overflow: hidden !important;
-}
-
-yt-live-chat-renderer yt-live-chat-text-message-renderer #content,
-yt-live-chat-renderer
-  yt-live-chat-text-message-renderer[is-highlighted]
-  #content,
-yt-live-chat-renderer yt-live-chat-paid-message-renderer #content,
-yt-live-chat-renderer yt-live-chat-legacy-paid-message-renderer #content {
-  overflow: visible !important;
-}
-
-/* =================================================================
-    MODERN MESSAGE DESIGN
-    ================================================================= */
-yt-live-chat-text-message-renderer,
-yt-live-chat-text-message-renderer[is-highlighted] {
-  margin: 0 0 var(--message-gap) 0;
-  padding-left: 24px;
-  display: flex;
-  align-items: flex-start;
-  animation: slideInMessage 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-}
-
-/* Message Container - Vertical Layout */
-yt-live-chat-text-message-renderer #content,
-yt-live-chat-text-message-renderer[is-highlighted] #content {
-  flex: 1;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  animation-delay: 0.1s;
-  z-index: 0;
-}
-
-/* Author name*/
-yt-live-chat-text-message-renderer #content #author-name,
-yt-live-chat-text-message-renderer[is-highlighted] #content #author-name {
-  font-family: "Times New Roman", Times, serif;
-  font-style: italic;
-  display: inline-block;
-  font-size: 20px !important;
-  font-weight: 400 !important;
-  color: var(--text-primary) !important;
-
-  position: relative;
-  z-index: 5;
-  order: 3;
-
-  padding: 4px 60px;
-  text-align: center;
-
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d8425633503263b0ed686d8828e79a410e7b94/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/viewer.svg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-origin: border-box;
-  background-clip: border-box;
-
-  margin-right: auto;
-  margin-top: 5px;
-  margin-bottom: 18px;
-  overflow: visible;
-}
-
-/* Member name styling */
-yt-live-chat-text-message-renderer[author-type="member"] #content #author-name,
-yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
-  #content
-  #author-name {
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d8425633503263b0ed686d8828e79a410e7b94/chat%20box%20fushi/chat%20box%20fushi/member%20chatbox/member.svg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-origin: border-box;
-  background-clip: border-box;
-}
-
-/* Moderator name styling */
-yt-live-chat-text-message-renderer[author-type="moderator"]
-  #content
-  #author-name,
-yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
-  #content
-  #author-name {
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/mod.svg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-origin: border-box;
-  background-clip: border-box;
-  margin-top: 12px;
-}
-
-/* Owner name styling */
-yt-live-chat-text-message-renderer[author-type="owner"] #content #author-name,
-yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
-  #content
-  #author-name {
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/owner.svg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-origin: border-box;
-  background-clip: border-box;
-  margin-top: 20px;
-}
-
-/*Viewer name assets*/
-yt-live-chat-text-message-renderer #content::after,
-yt-live-chat-text-message-renderer[is-highlighted] {
-  overflow: visible;
-  content: "";
-  position: absolute;
-  inset: -2px -3px 0px -10px;
-
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/2753add50a25e8a4e4b628578c9bec3d475f44da/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%208.svg")
-      no-repeat top calc(90% + 5px) left calc(25px),
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%206.svg")
-      no-repeat top 0px left 0px,
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%203.svg")
-      no-repeat top 1px left 8px,
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%2010.svg")
-      no-repeat top 1px left 30px;
-  /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
-      no-repeat center top -10px; */
-  background-size: 10px 10px, 48px 48px, 45px 45px, auto 85%;
-  z-index: 12;
-}
-yt-live-chat-text-message-renderer #content::before {
-  content: "";
-  position: absolute;
-  inset: -2px -3px 0px -10px;
-
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/2753add50a25e8a4e4b628578c9bec3d475f44da/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%207.svg")
-    no-repeat top calc(90% + 13px) left calc(15px);
-  background-size: 30px 30px;
-
-  z-index: 13;
-  animation: breathingBlink 3s ease-in-out infinite;
-}
-
-/* Member name assets */
-yt-live-chat-text-message-renderer[author-type="member"] #content::after,
-yt-live-chat-text-message-renderer[author-type="member"][is-highlighted] {
-  content: "";
-  position: absolute;
-  inset: -2px -3px 0px -10px;
-
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/member%20chatbox/Artboard%205.svg")
-      no-repeat top calc(90% + 5px) left calc(25px),
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%206.svg")
-      no-repeat top 0px left 0px,
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/member%20chatbox/Artboard%206.svg")
-      no-repeat top 1px left 8px,
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/member%20chatbox/Artboard%2011.svg")
-      no-repeat top 1px left 30px;
-  /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
-      no-repeat center top -10px; */
-  background-size: 10px 10px, 48px 48px, 45px 45px, auto 85%;
-  z-index: 12;
-}
-yt-live-chat-text-message-renderer[author-type="member"] #content::before {
-  content: "";
-  position: absolute;
-  inset: -2px -3px 0px -10px;
-
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/member%20chatbox/Artboard%204.svg")
-    no-repeat top calc(90% + 13px) left calc(15px);
-  background-size: 30px 30px;
-
-  z-index: 13;
-  animation: breathingBlink 3s ease-in-out infinite;
-}
-
-/* Moderator name assets */
-yt-live-chat-text-message-renderer[author-type="moderator"] #content::after,
-yt-live-chat-text-message-renderer[author-type="moderator"][is-highlighted] {
-  content: "";
-  position: absolute;
-  inset: -5px -5px 0px -15px;
-
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%209.svg")
-      no-repeat top calc(90% + 5px) left calc(30px),
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%207.svg")
-      no-repeat top -2px left 0px,
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%208.svg")
-      no-repeat top 5px left 35px;
-  /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
-      no-repeat center top -10px; */
-  background-size: 10px 10px, 65px 65px, auto 85%;
-  z-index: 12;
-}
-yt-live-chat-text-message-renderer[author-type="moderator"] #content::before {
-  content: "";
-  position: absolute;
-  inset: -5px -3px 0px -15px;
-
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%2010.svg")
-    no-repeat top calc(90% + 13px) left calc(20px);
-  background-size: 30px 30px;
-
-  z-index: 13;
-  animation: breathingBlink 3s ease-in-out infinite;
-}
-
-/* Owner name assets*/
-yt-live-chat-text-message-renderer[author-type="owner"] #content::after,
-yt-live-chat-text-message-renderer[author-type="owner"][is-highlighted] {
-  content: "";
-  position: absolute;
-  inset: 3px -3px 0px -10px;
-
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/light.svg")
-      no-repeat top calc(90% + 5px) left calc(25px),
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/3ef775ee37010579572041af443f9a6afa757c20/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/hat%20owner.svg")
-      no-repeat top -3px left 0px,
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/2a859750159a0261a74d3fad91ce91b195a1c9bb/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/khung%20owner.svg")
-      no-repeat top 11px left 8px,
-    url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/link.svg")
-      no-repeat top 11px left 30px;
-  /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
-      no-repeat center top -10px; */
-  background-size: 10px 10px, 60px 60px, 45px 45px, auto 85%;
-  z-index: 12;
-}
-yt-live-chat-text-message-renderer[author-type="owner"] #content::before {
-  content: "";
-  position: absolute;
-  inset: 3px -3px 0px -10px;
-
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/aura.svg")
-    no-repeat top calc(90% + 13px) left calc(15px);
-  background-size: 30px 30px;
-
-  z-index: 13;
-  animation: breathingBlink 3s ease-in-out infinite;
-}
-
-/* Modern Message Bubble - Connected to Name */
-yt-live-chat-text-message-renderer #content #message,
-yt-live-chat-text-message-renderer[is-highlighted] #content #message {
-  display: inline-block;
-  font-family: "Alegreya Sans", sans-serif;
-  font-style: italic;
-  font-weight: 300;
-  /* nền chính */
-  background: var(--default-accent);
-  border-radius: calc(50px / 5);
-
-  background-size: /* pattern */ cover; /* màu nền */
-  color: var(--text-primary) !important;
-  text-align: center;
-  font-size: 20px !important;
-  line-height: 1.25 !important;
-  padding: 13px 20px !important;
-  position: relative;
-  top: -16px; /* Pulls the message box up to overlap the border of the author name */
-  word-wrap: break-word;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  order: 2;
-  z-index: 1 !important;
-  display: inline-block;
-  width: auto; /* để nó fit theo text */
-  margin-left: 45px;
-  overflow: visible;
-}
-
-/* Member message variant */
-yt-live-chat-text-message-renderer[author-type="member"] #content #message,
-yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
-  #content
-  #message {
-  /* nền chính */
-  background: var(--member-accent);
-}
-
-/* Moderator message variant */
-yt-live-chat-text-message-renderer[author-type="moderator"] #content #message,
-yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
-  #content
-  #message {
-  /* nền chính */
-  background: var(--moderator-accent);
-  padding: 13px 30px !important;
-}
-
-/* Owner message variant */
-yt-live-chat-text-message-renderer[author-type="owner"] #content #message,
-yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
-  #content
-  #message {
-  background: var(--owner-accent);
-  padding: 13px 30px !important;
-}
-
-yt-live-chat-text-message-renderer[author-type="moderator"]
-  #content
-  #message::after,
-yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
-  #content
-  #message::after {
-  content: "";
-  position: absolute;
-  bottom: 5px;
-  right: -10px;
-  width: 40px;
-  height: 40px;
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%204.svg")
-    no-repeat no-repeat center;
-  background-size: contain;
-
-  z-index: 16;
-}
-
-yt-live-chat-text-message-renderer[author-type="owner"]
-  #content
-  #message::after,
-yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
-  #content
-  #message::after {
-  content: "";
-  position: absolute;
-  top: 0; /* bám trên cùng */
-  bottom: 0; /* bám dưới cùng */
-  right: 0; /* bám cạnh phải */
-  width: 116px; /* cố định ngang */
-  height: 100%;
-
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/f8555f23157c692d828110c8e6354d1afeca94f9/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/barrier%202.svg")
-    no-repeat center;
-  background-size: 100% 100%; /* ép stretch đầy đủ box */
-
-  z-index: 16;
-}
-
-yt-live-chat-text-message-renderer[author-type="owner"]
-  #content
-  #message::before,
-yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
-  #content
-  #message::before {
-  content: "";
-  position: absolute;
-  top: 0; /* bám trên cùng */
-  bottom: 0; /* bám dưới cùng */
-  left: 0; /* bám cạnh phải */
-  width: 84px; /* cố định ngang */
-  height: 100%;
-
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d8425633503263b0ed686d8828e79a410e7b94/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/barrier%201.svg")
-    no-repeat center;
-  background-size: 100% 100%; /* ép stretch đầy đủ box */
-
-  z-index: 16;
-}
-
-/* yt-live-chat-text-message-renderer[author-type="owner"] #content::before,
-yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"] {
-  content: "";
-  position: absolute;
-  inset: 13px -4px 12px -4px;
-
-  border: 15px solid transparent;
-  border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenLine.svg");
-  border-image-slice: 15 fill; 
-  border-image-repeat: stretch; 
-  z-index: -1;
-} */
-
-/* =================================================================
-    MICRO-INTERACTIONS
-    ================================================================= */
-/* Message entrance stagger effect */
-yt-live-chat-text-message-renderer:nth-child(1) {
-  animation-delay: 0s;
-}
-yt-live-chat-text-message-renderer:nth-child(2) {
-  animation-delay: 0.1s;
-}
-yt-live-chat-text-message-renderer:nth-child(3) {
-  animation-delay: 0.2s;
-}
-yt-live-chat-text-message-renderer:nth-child(4) {
-  animation-delay: 0.3s;
-}
-yt-live-chat-text-message-renderer:nth-child(5) {
-  animation-delay: 0.4s;
-}
-
-/* =================================================================
-    TIMESTAMP & UTILITIES
-    ================================================================= */
-yt-live-chat-text-message-renderer #timestamp {
-  color: var(--text-secondary) !important;
-  font-size: 11px !important;
-  font-weight: 400 !important;
-  opacity: 0.6 !important;
-  font-family: "JetBrains Mono", monospace !important;
-}
-
-/* Link styling */
-yt-live-chat-text-message-renderer a,
-yt-live-chat-legacy-paid-message-renderer a {
-  color: #4facfe !important;
-  text-decoration: none !important;
-  font-weight: 500 !important;
-  transition: all 0.2s ease;
-}
-
-yt-live-chat-text-message-renderer a:hover {
-  color: #00f2fe !important;
-  text-shadow: 0 0 8px rgba(79, 172, 254, 0.3);
-}
-
-/* Hide deleted messages */
-yt-live-chat-text-message-renderer[is-deleted],
-yt-live-chat-legacy-paid-message-renderer[is-deleted] {
-  display: none !important;
-}
-
-/* =================================================================
-    RESPONSIVE DESIGN
-    ================================================================= */
-@media (max-width: 480px) {
-  yt-live-chat-text-message-renderer #content #message {
-    padding: 12px 16px !important;
+  yt-button-view-model,
+  #before-content-buttons.yt-live-chat-text-message-renderer {
+    display: none !important;
   }
 
-  yt-live-chat-text-message-renderer #author-photo {
-    width: 24px;
-    height: 24px;
-    border-radius: 24px;
-    transform: scale(2, 2);
-    z-index: -50 !important;
+  yt-live-chat-text-message-renderer[author-is-owner] {
+    background-color: transparent !important;
+  }
+
+  /* Author badges (member, moderator, owner…) */
+  yt-live-chat-text-message-renderer #author-badges,
+  yt-live-chat-author-chip.yt-live-chat-membership-item-renderer #chat-badges,
+  yt-live-chat-author-badge-renderer[type="member"],
+  yt-live-chat-author-badge-renderer[type="moderator"],
+  yt-live-chat-author-badge-renderer[type="owner"] {
+    display: none !important;
+    vertical-align: text-top !important;
+    text-decoration: none !important;
+  }
+
+  /* Author photos / avatars */
+  yt-live-chat-text-message-renderer #author-photo,
+  yt-live-chat-text-message-renderer[is-highlighted] #author-photo {
+    display: none !important;
+  }
+
+  /* Deleted messages */
+  yt-live-chat-text-message-renderer[is-deleted],
+  yt-live-chat-legacy-paid-message-renderer[is-deleted] {
+    display: none !important;
+  }
+
+  /* =================================================================
+      CONTAINER SETUP
+      ================================================================= */
+  yt-live-chat-item-list-renderer #items,
+  yt-live-chat-item-list-renderer #item-scroller {
+    overflow: hidden !important;
+  }
+
+  yt-live-chat-renderer yt-live-chat-text-message-renderer #content,
+  yt-live-chat-renderer
+    yt-live-chat-text-message-renderer[is-highlighted]
+    #content,
+  yt-live-chat-renderer yt-live-chat-paid-message-renderer #content,
+  yt-live-chat-renderer yt-live-chat-legacy-paid-message-renderer #content {
+    overflow: visible !important;
+  }
+
+  /* =================================================================
+      MODERN MESSAGE DESIGN
+      ================================================================= */
+  yt-live-chat-text-message-renderer,
+  yt-live-chat-text-message-renderer[is-highlighted] {
+    margin: 0 0 var(--message-gap) 0;
+    padding-left: 24px;
+    display: flex;
+    align-items: flex-start;
+    animation: slideInMessage 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
-    top: 45px;
-    display: block;
-    border: 1px solid #181b2d;
-    margin-right: 8px;
   }
-}
 
-/* =================================================================
-    ACCESSIBILITY ENHANCEMENTS
-    ================================================================= */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  /* Message Container - Vertical Layout */
+  yt-live-chat-text-message-renderer #content,
+  yt-live-chat-text-message-renderer[is-highlighted] #content {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    animation-delay: 0.1s;
+    z-index: 0;
   }
-}
+
+  /* Author name*/
+  yt-live-chat-text-message-renderer #content #author-name,
+  yt-live-chat-text-message-renderer[is-highlighted] #content #author-name {
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    display: inline-block;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    color: var(--text-primary) !important;
+
+    position: relative;
+    z-index: 5;
+    order: 3;
+
+    padding: 4px 60px;
+    text-align: center;
+
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d8425633503263b0ed686d8828e79a410e7b94/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/viewer.svg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-clip: border-box;
+
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 18px;
+    overflow: visible;
+  }
+
+  /* Member name styling */
+  yt-live-chat-text-message-renderer[author-type="member"] #content #author-name,
+  yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
+    #content
+    #author-name {
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d8425633503263b0ed686d8828e79a410e7b94/chat%20box%20fushi/chat%20box%20fushi/member%20chatbox/member.svg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-clip: border-box;
+  }
+
+  /* Moderator name styling */
+  yt-live-chat-text-message-renderer[author-type="moderator"]
+    #content
+    #author-name,
+  yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
+    #content
+    #author-name {
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/69b6efec56505e3ed4bc9d95ea9526d5d3e37f77/chat%20box%20fushi/chat%20box%20fushi/member%20chatbox/khung%20chat%20mod%20uncut.svg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-clip: border-box;
+    margin-top: 12px;
+  }
+
+  /* Owner name styling */
+  yt-live-chat-text-message-renderer[author-type="owner"] #content #author-name,
+  yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
+    #content
+    #author-name {
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/owner.svg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-clip: border-box;
+    margin-top: 20px;
+  }
+
+  /*Viewer name assets*/
+  yt-live-chat-text-message-renderer #content::after,
+  yt-live-chat-text-message-renderer[is-highlighted] {
+    overflow: visible;
+    content: "";
+    position: absolute;
+    inset: -2px -3px 0px -10px;
+
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/2753add50a25e8a4e4b628578c9bec3d475f44da/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%208.svg")
+        no-repeat top calc(90% + 5px) left calc(25px),
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%206.svg")
+        no-repeat top 0px left 0px,
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%203.svg")
+        no-repeat top 1px left 8px,
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%2010.svg")
+        no-repeat top 1px left 30px;
+    /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
+        no-repeat center top -10px; */
+    background-size: 10px 10px, 48px 48px, 45px 45px, auto 85%;
+    z-index: 12;
+  }
+  yt-live-chat-text-message-renderer #content::before {
+    content: "";
+    position: absolute;
+    inset: -2px -3px 0px -10px;
+
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/2753add50a25e8a4e4b628578c9bec3d475f44da/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%207.svg")
+      no-repeat top calc(90% + 13px) left calc(15px);
+    background-size: 30px 30px;
+
+    z-index: 13;
+    animation: breathingBlink 3s ease-in-out infinite;
+  }
+
+  /* Member name assets */
+  yt-live-chat-text-message-renderer[author-type="member"] #content::after,
+  yt-live-chat-text-message-renderer[author-type="member"][is-highlighted] {
+    content: "";
+    position: absolute;
+    inset: -2px -3px 0px -10px;
+
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/member%20chatbox/Artboard%205.svg")
+        no-repeat top calc(90% + 5px) left calc(25px),
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d9191ca194711bc54932923937811d4c2f285e/chat%20box%20fushi/chat%20box%20fushi/viewer%20chatbox/Artboard%206.svg")
+        no-repeat top 0px left 0px,
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/member%20chatbox/Artboard%206.svg")
+        no-repeat top 1px left 8px,
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/member%20chatbox/Artboard%2011.svg")
+        no-repeat top 1px left 30px;
+    /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
+        no-repeat center top -10px; */
+    background-size: 10px 10px, 48px 48px, 45px 45px, auto 85%;
+    z-index: 12;
+  }
+  yt-live-chat-text-message-renderer[author-type="member"] #content::before {
+    content: "";
+    position: absolute;
+    inset: -2px -3px 0px -10px;
+
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/member%20chatbox/Artboard%204.svg")
+      no-repeat top calc(90% + 13px) left calc(15px);
+    background-size: 30px 30px;
+
+    z-index: 13;
+    animation: breathingBlink 3s ease-in-out infinite;
+  }
+
+  /* Moderator name assets */
+  yt-live-chat-text-message-renderer[author-type="moderator"] #content::after,
+  yt-live-chat-text-message-renderer[author-type="moderator"][is-highlighted] {
+    content: "";
+    position: absolute;
+    inset: -5px -5px 0px -15px;
+
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%209.svg")
+        no-repeat top calc(90% + 5px) left calc(30px),
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%207.svg")
+        no-repeat top -2px left 0px,
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%208.svg")
+        no-repeat top 5px left 35px;
+    /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
+        no-repeat center top -10px; */
+    background-size: 10px 10px, 65px 65px, auto 85%;
+    z-index: 12;
+  }
+  yt-live-chat-text-message-renderer[author-type="moderator"] #content::before {
+    content: "";
+    position: absolute;
+    inset: -5px -3px 0px -15px;
+
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%2010.svg")
+      no-repeat top calc(90% + 13px) left calc(20px);
+    background-size: 30px 30px;
+
+    z-index: 13;
+    animation: breathingBlink 3s ease-in-out infinite;
+  }
+
+  /* Owner name assets*/
+  yt-live-chat-text-message-renderer[author-type="owner"] #content::after,
+  yt-live-chat-text-message-renderer[author-type="owner"][is-highlighted] {
+    content: "";
+    position: absolute;
+    inset: 3px -3px 0px -10px;
+
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/light.svg")
+        no-repeat top calc(90% + 5px) left calc(25px),
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/3ef775ee37010579572041af443f9a6afa757c20/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/hat%20owner.svg")
+        no-repeat top -3px left 0px,
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/2a859750159a0261a74d3fad91ce91b195a1c9bb/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/khung%20owner.svg")
+        no-repeat top 11px left 8px,
+      url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/link.svg")
+        no-repeat top 11px left 30px;
+    /* url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenCharm.svg")
+        no-repeat center top -10px; */
+    background-size: 10px 10px, 60px 60px, 45px 45px, auto 85%;
+    z-index: 12;
+  }
+  yt-live-chat-text-message-renderer[author-type="owner"] #content::before {
+    content: "";
+    position: absolute;
+    inset: 3px -3px 0px -10px;
+
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/aura.svg")
+      no-repeat top calc(90% + 13px) left calc(15px);
+    background-size: 30px 30px;
+
+    z-index: 13;
+    animation: breathingBlink 3s ease-in-out infinite;
+  }
+
+  /* Modern Message Bubble - Connected to Name */
+  yt-live-chat-text-message-renderer #content #message,
+  yt-live-chat-text-message-renderer[is-highlighted] #content #message {
+    display: inline-block;
+    font-family: "Alegreya Sans", sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    /* nền chính */
+    background: var(--default-accent);
+    border-radius: calc(50px / 5);
+
+    background-size: /* pattern */ cover; /* màu nền */
+    color: var(--text-primary) !important;
+    text-align: center;
+    font-size: 20px !important;
+    line-height: 1.25 !important;
+    padding: 13px 20px !important;
+    position: relative;
+    top: -16px; /* Pulls the message box up to overlap the border of the author name */
+    word-wrap: break-word;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    order: 2;
+    z-index: 1 !important;
+    display: inline-block;
+    width: auto; /* để nó fit theo text */
+    margin-left: 45px;
+    overflow: visible;
+  }
+
+  /* Member message variant */
+  yt-live-chat-text-message-renderer[author-type="member"] #content #message,
+  yt-live-chat-text-message-renderer[is-highlighted][author-type="member"]
+    #content
+    #message {
+    /* nền chính */
+    background: var(--member-accent);
+  }
+
+  /* Moderator message variant */
+  yt-live-chat-text-message-renderer[author-type="moderator"] #content #message,
+  yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
+    #content
+    #message {
+    /* nền chính */
+    background: var(--moderator-accent);
+    padding: 13px 30px !important;
+  }
+
+  /* Owner message variant */
+  yt-live-chat-text-message-renderer[author-type="owner"] #content #message,
+  yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
+    #content
+    #message {
+    background: var(--owner-accent);
+    padding: 13px 30px !important;
+  }
+
+  yt-live-chat-text-message-renderer[author-type="moderator"]
+    #content
+    #message::after,
+  yt-live-chat-text-message-renderer[is-highlighted][author-type="moderator"]
+    #content
+    #message::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/62a22b22dea57ea067fc7ec595f3b89735cc0485/chat%20box%20fushi/chat%20box%20fushi/c%E1%BB%9D%20l%C3%AA%20chatbox/Artboard%204.svg")
+      no-repeat no-repeat center;
+    background-size: contain;
+
+    z-index: 16;
+  }
+
+  yt-live-chat-text-message-renderer[author-type="owner"]
+    #content
+    #message::after,
+  yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
+    #content
+    #message::after {
+    content: "";
+    position: absolute;
+    top: 0; /* bám trên cùng */
+    bottom: 0; /* bám dưới cùng */
+    right: 0; /* bám cạnh phải */
+    width: 116px; /* cố định ngang */
+    height: 100%;
+
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/f8555f23157c692d828110c8e6354d1afeca94f9/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/barrier%202.svg")
+      no-repeat center;
+    background-size: 100% 100%; /* ép stretch đầy đủ box */
+
+    z-index: 16;
+  }
+
+  yt-live-chat-text-message-renderer[author-type="owner"]
+    #content
+    #message::before,
+  yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
+    #content
+    #message::before {
+    content: "";
+    position: absolute;
+    top: 0; /* bám trên cùng */
+    bottom: 0; /* bám dưới cùng */
+    left: 0; /* bám cạnh phải */
+    width: 84px; /* cố định ngang */
+    height: 100%;
+
+    background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/a8d8425633503263b0ed686d8828e79a410e7b94/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/barrier%201.svg")
+      no-repeat center;
+    background-size: 100% 100%; /* ép stretch đầy đủ box */
+
+    z-index: 16;
+  }
+
+  /* yt-live-chat-text-message-renderer[author-type="owner"] #content::before,
+  yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"] {
+    content: "";
+    position: absolute;
+    inset: 13px -4px 12px -4px;
+
+    border: 15px solid transparent;
+    border-image-source: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/fa302541424c81a950d3562ffd708608e9728bfa/GoldenLine.svg");
+    border-image-slice: 15 fill; 
+    border-image-repeat: stretch; 
+    z-index: -1;
+  } */
+
+  /* =================================================================
+      MICRO-INTERACTIONS
+      ================================================================= */
+  /* Message entrance stagger effect */
+  yt-live-chat-text-message-renderer:nth-child(1) {
+    animation-delay: 0s;
+  }
+  yt-live-chat-text-message-renderer:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  yt-live-chat-text-message-renderer:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  yt-live-chat-text-message-renderer:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  yt-live-chat-text-message-renderer:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+
+  /* =================================================================
+      TIMESTAMP & UTILITIES
+      ================================================================= */
+  yt-live-chat-text-message-renderer #timestamp {
+    color: var(--text-secondary) !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    opacity: 0.6 !important;
+    font-family: "JetBrains Mono", monospace !important;
+  }
+
+  /* Link styling */
+  yt-live-chat-text-message-renderer a,
+  yt-live-chat-legacy-paid-message-renderer a {
+    color: #4facfe !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease;
+  }
+
+  yt-live-chat-text-message-renderer a:hover {
+    color: #00f2fe !important;
+    text-shadow: 0 0 8px rgba(79, 172, 254, 0.3);
+  }
+
+  /* Hide deleted messages */
+  yt-live-chat-text-message-renderer[is-deleted],
+  yt-live-chat-legacy-paid-message-renderer[is-deleted] {
+    display: none !important;
+  }
+
+  /* =================================================================
+      RESPONSIVE DESIGN
+      ================================================================= */
+  @media (max-width: 480px) {
+    yt-live-chat-text-message-renderer #content #message {
+      padding: 12px 16px !important;
+    }
+
+    yt-live-chat-text-message-renderer #author-photo {
+      width: 24px;
+      height: 24px;
+      border-radius: 24px;
+      transform: scale(2, 2);
+      z-index: -50 !important;
+      position: relative;
+      top: 45px;
+      display: block;
+      border: 1px solid #181b2d;
+      margin-right: 8px;
+    }
+  }
+
+  /* =================================================================
+      ACCESSIBILITY ENHANCEMENTS
+      ================================================================= */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
