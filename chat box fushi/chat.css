@@ -513,13 +513,14 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
   #message::after {
   content: "";
   position: absolute;
-  top: -3px;
-  right: 0px;
-  height: 54px;
-  width: 116px;
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/2a859750159a0261a74d3fad91ce91b195a1c9bb/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/barrier%202.svg")
-    no-repeat no-repeat center;
-  background-size: contain;
+  top: 0; /* bám trên cùng */
+  bottom: 0; /* bám dưới cùng */
+  right: 0; /* bám cạnh phải */
+  width: 116px; /* cố định ngang */
+
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/4d2c35363f4ef16216a21a1f624d298132b0cc58/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/barrier%202.svg")
+    no-repeat center;
+  background-size: cover; /* hoặc contain tùy cậu muốn scale theo trục nào */
 
   z-index: 16;
 }
