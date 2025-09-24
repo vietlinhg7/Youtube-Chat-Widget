@@ -517,10 +517,32 @@ yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
   bottom: 0; /* bám dưới cùng */
   right: 0; /* bám cạnh phải */
   width: 116px; /* cố định ngang */
+  height: 100%;
 
-  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/4d2c35363f4ef16216a21a1f624d298132b0cc58/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/barrier%202.svg")
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/f8555f23157c692d828110c8e6354d1afeca94f9/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/barrier%202.svg")
     no-repeat center;
-  background-size: cover; /* hoặc contain tùy cậu muốn scale theo trục nào */
+  background-size: 100% 100%; /* ép stretch đầy đủ box */
+
+  z-index: 16;
+}
+
+yt-live-chat-text-message-renderer[author-type="owner"]
+  #content
+  #message::after,
+yt-live-chat-text-message-renderer[is-highlighted][author-type="owner"]
+  #content
+  #message::after {
+  content: "";
+  position: absolute;
+  top: 0; /* bám trên cùng */
+  bottom: 0; /* bám dưới cùng */
+  right: 0; /* bám cạnh phải */
+  width: 116px; /* cố định ngang */
+  height: 100%;
+
+  background: url("https://raw.githubusercontent.com/vietlinhg7/Youtube-Chat-Widget/f8555f23157c692d828110c8e6354d1afeca94f9/chat%20box%20fushi/chat%20box%20fushi/owner%20chatbox/barrier%202.svg")
+    no-repeat center;
+  background-size: 100% 100%; /* ép stretch đầy đủ box */
 
   z-index: 16;
 }
